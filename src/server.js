@@ -1,7 +1,17 @@
 import http from "http"; // Importa o módulo HTTP nativo
 
 const server = http.createServer((req, res) => { // Cria o servidor e define a função para cada requisição
-   
+    if (req.method === "GET" && req.url === "/chamados") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({
+            status: "ok", result: [{
+                "solicitante": "solocitante1",
+                "descricao": "descrição1",
+                "prioridade": "prioriedade"
+            }]
+        }));
+        return;
+    }
     if (req.method === "GET" && req.url === "/health") { // Verifica rota GET /health
         res.writeHead(200, { "Content-Type": "application/json" }); // Define status 200 e tipo JSON
         res.end(JSON.stringify({ status: "ok" })); // Envia JSON e encerra
