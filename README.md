@@ -135,10 +135,10 @@ Mínimo de 5 commits.
 Mensagens devem ser descritivas.
 
 Exemplo:
-feat: implementa rota health
-feat: adiciona POST
-fix: corrige validação de campos
-refactor: organiza lógica
+feat: implementa rota health <br>
+feat: adiciona POST <br>
+fix: corrige validação de campos <br>
+refactor: organiza lógica <br>
 
 ---
 
