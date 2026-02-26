@@ -1,5 +1,6 @@
 import http from "http";
 import { parse } from "path";
+import { send } from "process";
 
 let chamados = [];
 let currentId = 1;
@@ -11,14 +12,26 @@ const sendJSON = (res, statusCode, data) => {
 const server = http.createServer((req, res) => {
     const { pathname } = parse(req.url, true);
 
-    if (req.method === "GET" && req.url === "/health") {
+    if (req.method === "GET" && pathname === "/health") {
         return sendJSON(res, 200, { status: "ok" });
     }
 
-    if (req.method === "GET" && req.url === "/chamados") {
-       return sendJSON(res, 200, chamados);
+    if (req.method === "GET" && pathname === "/chamados") {
+        return sendJSON(res, 200, chamados);
     }
 
+    if (req.method === "GET" && pathname.startsWith("/chamados/")) {
+        const id = parseInt(pathname.split("/")[2]);
+        if (isNaN(id)) {
+            return sendJSON(res, 400, { error: "ID inválido" });
+        }
+
+        const chamado = chamados.find(c => c.id === id);
+        if (!chamado) {
+            return sendJSON(res, 404, { error: "Chamado não encontrado" });
+        }
+        return sendJSON(res, 200, chamado);
+    }
 });
 
 server.listen(3000, () => {
