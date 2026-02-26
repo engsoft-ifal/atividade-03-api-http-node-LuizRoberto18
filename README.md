@@ -47,7 +47,9 @@ Os dados deverão ser armazenados em memória (array).
 Edite esta seção antes de iniciar.
 
 Nome completo: Luiz Roberto Torres dos Santos
+
 Matrícula: 2023011985
+
 Variação calculada: 1
 
 Cálculo da variação:
