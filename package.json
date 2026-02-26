@@ -4,5 +4,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js"
+  },
+  "dependencies": {
+    "raw-body": "^3.0.2"
   }
 }
